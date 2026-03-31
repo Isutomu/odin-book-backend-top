@@ -1,0 +1,20 @@
+// 3rd Party Modules
+import { type User } from "#src/generated/prisma/client";
+
+export type UserSignup = Omit<User, "id">;
+export const userSignup: UserSignup = {
+  username: "username",
+  email: "email@email.com",
+  password: "password",
+};
+export const newUserSignup: UserSignup = {
+  username: "usernameUsername",
+  email: "email@email.com",
+  password: "passwordPassword",
+};
+
+export type UserLogin = Omit<User, "id" | "email">;
+export const userLogin: UserLogin = {
+  username: "username",
+  password: "password",
+};

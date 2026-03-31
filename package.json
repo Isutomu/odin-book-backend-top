@@ -1,0 +1,75 @@
+{
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Isutomu/messaging-app-backend-top#readme",
+  "bugs": {
+    "url": "https://github.com/Isutomu/messaging-app-backend-top/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isutomu/messaging-app-backend-top.git"
+  },
+  "imports": {
+    "#src/*": "./src/*.ts",
+    "#tests/*": "./tests/*.ts"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/app.js",
+    "build": "prisma generate && tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json ",
+    "dev": "tsx --watch --env-file=.env.development src/app.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "test": "npm run docker:up && dotenv -e .env.testing -- npx prisma migrate deploy && vitest --config=./vitest.config.ts",
+    "proxy": "lcp --proxyUrl http://localhost:8000 --origin http://localhost:5173 --credentials",
+    "openapi-ts": "openapi-ts"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "@quixo3/prisma-session-store": "^3.1.19",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dompurify": "^3.3.3",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "jsdom": "^29.0.1",
+    "morgan": "^1.10.1",
+    "nodemailer": "^8.0.4",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.94.5",
+    "@tanstack/react-query": "^5.95.2",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^25.5.0",
+    "@types/passport": "^1.0.17",
+    "@types/passport-local": "^1.0.38",
+    "@types/pg": "^8.20.0",
+    "@types/supertest": "^7.2.0",
+    "@vitest/ui": "^4.1.2",
+    "dotenv-cli": "^11.0.0",
+    "eslint": "^10.1.0",
+    "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "prettier": "^3.8.1",
+    "prettier-plugin-prisma": "^5.0.0",
+    "prisma": "^7.6.0",
+    "supertest": "^7.2.2",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.3",
+    "vitest": "^4.1.2"
+  }
+}
