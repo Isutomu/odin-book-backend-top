@@ -5,8 +5,10 @@ import { vi } from "vitest";
 // Local Modules
 import { type CustomNextFunction } from "#src/types/types";
 import {
+  postCreate,
   userLogin,
   userSignup,
+  type PostCreate,
   type UserLogin,
   type UserSignup,
 } from "#tests/helpers/data";
@@ -34,3 +36,8 @@ export const res: Partial<Response> = {
 };
 
 export const next: Partial<CustomNextFunction> = vi.fn().mockReturnThis();
+
+type RequestCreatePost = { body: PostCreate } & Partial<Omit<Request, "body">>;
+export const reqCreatePost: RequestCreatePost = {
+  body: postCreate,
+};
