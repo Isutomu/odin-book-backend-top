@@ -28,3 +28,26 @@ export const addUserToRequest = async (
   req.user = { id: createdUser.id, username: createdUser.username };
   return next();
 };
+
+export const addPostToDB = async (
+  req: Request,
+  _res: Response,
+  next: NextFunction,
+) => {
+  if (req.user?.id === undefined) {
+    throw new Error("Incorrect chain of middleware for testing");
+  }
+
+  await prisma.post.create({
+    data: {
+      id: "postId",
+      content: "",
+      author: {
+        connect: {
+          id: req.user?.id,
+        },
+      },
+    },
+  });
+  return next();
+};
