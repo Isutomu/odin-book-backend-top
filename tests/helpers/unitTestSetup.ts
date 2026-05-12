@@ -49,3 +49,13 @@ type RequestDeletePost = { params: { postId: string } } & Partial<
 export const reqDeletePost: RequestDeletePost = {
   params: { postId: "postId" },
 };
+
+type RequestUpdatePost = {
+  params: { postId: string };
+  body: { content: string };
+} & Partial<Omit<Request, "params" | "body">>;
+// postId is just placeholder. On integrations tests the value will be changed.
+export const reqUpdatePost: RequestUpdatePost = {
+  params: { postId: "postId" },
+  body: { content: "content" },
+};

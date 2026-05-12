@@ -26,3 +26,11 @@ export type PostCreate = Omit<
 export const postCreate: PostCreate = {
   content: "content",
 };
+
+export type PostUpdate = Omit<
+  Post,
+  "id" | "publishedAt" | "updatedAt" | "authorId"
+>;
+export const postUpdate: PostCreate = {
+  content: "new content!",
+};
