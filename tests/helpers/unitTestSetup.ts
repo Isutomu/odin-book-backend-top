@@ -30,6 +30,13 @@ export const reqIsLogged: RequestUserIsLogged = {
   user: { id: "1234" },
 };
 
+type CustomResponse = { user: { id: string } } & Partial<Omit<Request, "user">>;
+export const req: CustomResponse = {
+  user: { id: "id" },
+  body: {},
+  params: {},
+};
+
 export const res: Partial<Response> = {
   status: vi.fn().mockReturnThis(),
   json: vi.fn(),
