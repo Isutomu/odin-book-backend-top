@@ -11,6 +11,7 @@ import { updatePost } from "#src/controllers/post/updatePost";
 import { updatePostValidators } from "#src/validators/post/updatePostValidator";
 import { getFeed } from "#src/controllers/post/getFeed";
 import { getPost } from "#src/controllers/post/getPost";
+import { getAllPosts } from "#src/controllers/post/getAllPosts";
 
 const postRouter = Router();
 
@@ -27,5 +28,6 @@ postRouter.patch(
 postRouter.get("/feed", getFeed);
 postRouter.get("/feed/:lastPostId", getFeed);
 postRouter.get("/read/:postId", getPost);
+postRouter.get("/read-all/:username", getAllPosts);
 
 export { postRouter };
