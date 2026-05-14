@@ -10,6 +10,7 @@ import { deletePost } from "#src/controllers/post/deletePost";
 import { updatePost } from "#src/controllers/post/updatePost";
 import { updatePostValidators } from "#src/validators/post/updatePostValidator";
 import { getFeed } from "#src/controllers/post/getFeed";
+import { getPost } from "#src/controllers/post/getPost";
 
 const postRouter = Router();
 
@@ -25,5 +26,6 @@ postRouter.patch(
 );
 postRouter.get("/feed", getFeed);
 postRouter.get("/feed/:lastPostId", getFeed);
+postRouter.get("/read/:postId", getPost);
 
 export { postRouter };
