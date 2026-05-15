@@ -30,3 +30,10 @@ export const bodyPassword = () =>
     )
     .isLength({ min: 6, max: 30 })
     .withMessage("'password' must be between 6 and 30 characters long.");
+
+export const bodyPost = () =>
+  body("content")
+    .notEmpty()
+    .withMessage("'post' is required.")
+    .isLength({ max: 600 })
+    .withMessage("'post' must be 600 characters long at most.");
