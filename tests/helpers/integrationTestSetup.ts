@@ -136,3 +136,24 @@ export const bulkAddUsersAndPostsToDBNoFollowers = async (
   }
   next();
 };
+
+/**
+ * Create 11 posts authored by userSignup.
+ */
+export const bulkAddPostsToUser = async (
+  _req: Request,
+  _res: Response,
+  next: NextFunction,
+) => {
+  for (let i = 1; i <= 11; i++) {
+    faker.seed(i);
+    await prisma.post.create({
+      data: {
+        id: `post${i}`,
+        content: faker.book.title(),
+        author: { connect: { username: userSignup.username } },
+      },
+    });
+  }
+  next();
+};

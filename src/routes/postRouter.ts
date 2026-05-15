@@ -12,6 +12,7 @@ import { updatePostValidators } from "#src/validators/post/updatePostValidator";
 import { getFeed } from "#src/controllers/post/getFeed";
 import { getPost } from "#src/controllers/post/getPost";
 import { getAllPosts } from "#src/controllers/post/getAllPosts";
+import { getAllPostsPagination } from "#src/controllers/post/getAllPostsPagination";
 
 const postRouter = Router();
 
@@ -29,5 +30,9 @@ postRouter.get("/feed", getFeed);
 postRouter.get("/feed/:lastPostId", getFeed);
 postRouter.get("/read/:postId", getPost);
 postRouter.get("/read-all/:username", getAllPosts);
+postRouter.get(
+  "/read-all/:username/pagination/:lastPostId",
+  getAllPostsPagination,
+);
 
 export { postRouter };
