@@ -15,7 +15,11 @@ export const getPost = async (
   const postId = req.params.postId as string;
 
   try {
-    const post = await prisma.post.findFirstOrThrow({ where: { id: postId } });
+    const post = await prisma.post.findFirstOrThrow({
+      where: { id: postId },
+      include: { author: { select: { username: true } } },
+      omit: { authorId: true },
+    });
     return res.status(200).json({ message: "success", data: post });
   } catch (e) {
     return next(new CustomError(404, "Post not found"));
