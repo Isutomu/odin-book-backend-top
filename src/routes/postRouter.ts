@@ -28,7 +28,7 @@ postRouter.patch(
   updatePost,
 );
 postRouter.get("/feed", getFeed);
-postRouter.get("/feed/:lastPostId", getFeedPagination);
+postRouter.get("/feed/pagination/:lastPostId", getFeedPagination);
 postRouter.get("/read/:postId", getPost);
 postRouter.get("/read-all/:username", getAllPosts);
 postRouter.get(

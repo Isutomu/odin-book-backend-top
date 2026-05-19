@@ -24,9 +24,9 @@ import {
 import { getFeedPagination } from "#src/controllers/post/getFeedPagination";
 
 // Constants
-const PATH = "/post/feed/post10";
-const PATH_SUPERTEST = "/post/feed/:lastPostId";
-const PATH_SUPERTEST_WRONG_ID = "/post/feed/WRONGID";
+const PATH = "/post/feed/pagination/post10";
+const PATH_SUPERTEST = "/post/feed/pagination/:lastPostId";
+const PATH_SUPERTEST_WRONG_ID = "/post/feed/pagination/WRONGID";
 const RESPONSE_DATA_FORMAT = {
   id: expect.any(String),
   content: expect.any(String),
