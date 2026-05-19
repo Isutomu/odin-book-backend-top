@@ -59,7 +59,7 @@ describe("Get All Posts Pagination Unit Tests", () => {
       batchRequestIdx: 0,
       meta: {},
     });
-    vi.mocked(prisma.user.findFirstOrThrow).mockRejectedValueOnce(prismaError);
+    vi.mocked(prisma.post.findFirstOrThrow).mockRejectedValueOnce(prismaError);
     await getAllPostsPagination(
       req as Request,
       res as Response,
