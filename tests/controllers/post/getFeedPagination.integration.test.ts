@@ -21,7 +21,7 @@ import {
   bulkAddUsersAndPostsToDB,
   bulkAddUsersAndPostsToDBNoFollowers,
 } from "#tests/helpers/integrationTestSetup";
-import { getFeed } from "#src/controllers/post/getFeed";
+import { getFeedPagination } from "#src/controllers/post/getFeedPagination";
 
 // Constants
 const PATH = "/post/feed/post10";
@@ -42,7 +42,7 @@ const populateDB = vi.fn((_req: Request, _res: Response, next: NextFunction) =>
 
 app.use(addUserToRequest);
 app.use(populateDB);
-app.get(PATH_SUPERTEST, getFeed);
+app.get(PATH_SUPERTEST, getFeedPagination);
 app.use(errorHandler);
 const prismaFindManyUserSpy = vi.spyOn(prisma.user, "findMany");
 const prismaFindManyPostSpy = vi.spyOn(prisma.post, "findMany");

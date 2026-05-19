@@ -10,6 +10,7 @@ import { deletePost } from "#src/controllers/post/deletePost";
 import { updatePost } from "#src/controllers/post/updatePost";
 import { updatePostValidators } from "#src/validators/post/updatePostValidator";
 import { getFeed } from "#src/controllers/post/getFeed";
+import { getFeedPagination } from "#src/controllers/post/getFeedPagination";
 import { getPost } from "#src/controllers/post/getPost";
 import { getAllPosts } from "#src/controllers/post/getAllPosts";
 import { getAllPostsPagination } from "#src/controllers/post/getAllPostsPagination";
@@ -27,7 +28,7 @@ postRouter.patch(
   updatePost,
 );
 postRouter.get("/feed", getFeed);
-postRouter.get("/feed/:lastPostId", getFeed);
+postRouter.get("/feed/:lastPostId", getFeedPagination);
 postRouter.get("/read/:postId", getPost);
 postRouter.get("/read-all/:username", getAllPosts);
 postRouter.get(
