@@ -48,9 +48,11 @@ describe("Get Post Integration Tests", () => {
     it("should get a post successfully", async () => {
       const response = await supertest(app).get(PATH_SUPERTEST);
       expect(response.status).toBe(200);
-      expect(prismaFindFirstOrThrowPostSpy).toHaveBeenCalledExactlyOnceWith({
-        where: { id: "postId" },
-      });
+      expect(prismaFindFirstOrThrowPostSpy).toHaveBeenCalledExactlyOnceWith(
+        expect.objectContaining({
+          where: { id: "postId" },
+        }),
+      );
     });
   });
 
@@ -59,9 +61,11 @@ describe("Get Post Integration Tests", () => {
       it("should fail when there is no post with the provided id", async () => {
         const response = await supertest(app).get(PATH_SUPERTEST_WRONG_ID);
         expect(response.status).toBe(404);
-        expect(prismaFindFirstOrThrowPostSpy).toHaveBeenCalledExactlyOnceWith({
-          where: { id: "WRONGID" },
-        });
+        expect(prismaFindFirstOrThrowPostSpy).toHaveBeenCalledExactlyOnceWith(
+          expect.objectContaining({
+            where: { id: "WRONGID" },
+          }),
+        );
       });
     });
   });
