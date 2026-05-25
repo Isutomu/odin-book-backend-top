@@ -71,6 +71,7 @@ export const bulkAddUsersAndPostsToDB = async (
         email: `${username}@email.com`,
         password: "password",
         followers: { connect: { username: userSignup.username } },
+        following: { connect: { username: userSignup.username } },
       },
     });
     await prisma.post.create({
