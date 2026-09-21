@@ -43,7 +43,7 @@ app.use(errorHandler);
 const prismaCountUserSpy = vi.spyOn(prisma.user, "count");
 const prismaFindManyUserSpy = vi.spyOn(prisma.user, "findMany");
 
-describe("Get Feed (With Route Parameter) Integration Tests", () => {
+describe("Get Followers From Logged User", () => {
   beforeAll(async () => {
     await cleanDatabase();
   });
