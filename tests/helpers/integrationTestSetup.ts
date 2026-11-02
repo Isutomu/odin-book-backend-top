@@ -13,7 +13,17 @@ export const createUser = async () => {
   const salt = await bcrypt.genSalt(Number(process.env.SALT_ROUNDS));
   const hashedPassword = await bcrypt.hash(password, salt);
   const createdUser = await prisma.user.create({
-    data: { username, email, password: hashedPassword },
+    data: {
+      username,
+      email,
+      password: hashedPassword,
+    },
+  });
+  await prisma.profile.create({
+    data: { author: { connect: { id: createdUser.id } } },
+  });
+  await prisma.visualCustomization.create({
+    data: { author: { connect: { id: createdUser.id } } },
   });
 
   return createdUser;
@@ -74,6 +84,12 @@ export const bulkAddUsersAndPostsToDB = async (
         following: { connect: { username: userSignup.username } },
       },
     });
+    await prisma.profile.create({
+      data: { author: { connect: { id: user.id } } },
+    });
+    await prisma.visualCustomization.create({
+      data: { author: { connect: { id: user.id } } },
+    });
     await prisma.post.create({
       data: {
         id: `post${i}`,
@@ -96,7 +112,7 @@ export const bulkAddUsers = async (
   for (let i = 1; i <= 11; i++) {
     faker.seed(i);
     const username = faker.person.firstName();
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         username,
         email: `${username}@email.com`,
@@ -104,7 +120,14 @@ export const bulkAddUsers = async (
         followers: { connect: { username: userSignup.username } },
       },
     });
+    await prisma.profile.create({
+      data: { author: { connect: { id: user.id } } },
+    });
+    await prisma.visualCustomization.create({
+      data: { author: { connect: { id: user.id } } },
+    });
   }
+
   return next();
 };
 
@@ -126,6 +149,12 @@ export const bulkAddUsersAndPostsToDBNoFollowers = async (
         email: `${username}@email.com`,
         password: "password",
       },
+    });
+    await prisma.profile.create({
+      data: { author: { connect: { id: user.id } } },
+    });
+    await prisma.visualCustomization.create({
+      data: { author: { connect: { id: user.id } } },
     });
     await prisma.post.create({
       data: {
