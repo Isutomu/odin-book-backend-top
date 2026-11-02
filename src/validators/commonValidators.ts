@@ -37,3 +37,10 @@ export const bodyPost = () =>
     .withMessage("'post' is required.")
     .isLength({ max: 600 })
     .withMessage("'post' must be 600 characters long at most.");
+
+export const bodyDescription = () =>
+  body("description")
+    .notEmpty()
+    .withMessage("'description' is required.")
+    .isLength({ max: 300 })
+    .withMessage("'description' must be 300 characters long at most.");

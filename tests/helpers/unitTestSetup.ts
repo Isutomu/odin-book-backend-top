@@ -5,6 +5,7 @@ import { vi } from "vitest";
 // Local Modules
 import { type CustomNextFunction } from "#src/types/types";
 import {
+  descriptionPatch,
   postCreate,
   userLogin,
   userSignup,
@@ -65,4 +66,11 @@ type RequestUpdatePost = {
 export const reqUpdatePost: RequestUpdatePost = {
   params: { postId: "postId" },
   body: { content: "content" },
+};
+
+type RequestPatchDescription = { body: { description: string } } & Partial<
+  Omit<Request, "body">
+>;
+export const reqPatchDescription: RequestPatchDescription = {
+  body: descriptionPatch,
 };

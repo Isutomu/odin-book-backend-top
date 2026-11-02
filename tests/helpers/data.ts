@@ -43,3 +43,7 @@ export const postsResponseDataFormat = {
   updatedAt: null,
   author: { username: expect.any(String) },
 };
+
+export const descriptionPatch = {
+  description: "description",
+};
